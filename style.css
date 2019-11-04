@@ -1,0 +1,15 @@
+div {
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    margin: 5px;
+}
+div:hover {
+    background: LightCoral;
+    cursor: pointer;
+}
+main {
+    display: grid;
+    grid-template-columns: repeat(5, 55px);
+    grid-template-rows: repeat(5, 55px);
+}
