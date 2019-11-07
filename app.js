@@ -1,20 +1,7 @@
 let gameSettings = {
     gameSize: 5,
     bombs: 3,
-    clicked: false,
 };
-
-let main = document.querySelector('main');
-let sqauresArray = document.querySelectorAll('div');
-
-function makeSquares() {
-    for (let i = 0; i < 25; i++) {
-        let div = document.createElement('div');
-        main.appendChild(div);
-    }
-}
-
-makeSquares();
 
 let row1 = [];
 let row2 = [];
@@ -24,7 +11,77 @@ let row5 = [];
 let row6 = [];
 let row7 = [];
 let row8 = [];
-let row9 = [];
+
+const iterator = [
+    row1,
+    row2,
+    row3,
+    row4,
+    row5,
+    row6,
+    row7,
+    row8,
+];
+
+
+let selectedDropDown = document.querySelector('select');
+let main = document.querySelector('main');
+
+let squareAmount = gameSettings.gameSize * gameSettings.gameSize;
+
+function makeSquares() {
+    for (let i = 0; i < squareAmount; i++) {
+        let div = document.createElement('div');
+        main.appendChild(div);
+    }
+}
+
+let sqauresArray = document.querySelectorAll('div');
+setIds();
+
+function generateBombs() {
+    for (let i = 0; i < gameSettings.bombs; i++) {
+        let randomNum = Math.floor(Math.random() * gameSettings.gameSize);
+        let bomb = iterator[randomNum][randomNum];
+        console.log(bomb);
+        bomb.classList.add('bomb');
+    }
+}
+
+selectedDropDown.addEventListener('change', function() {
+    let difficulty = this.value;
+    let difficultyToNumber = parseInt(difficulty);
+    let numberDifficulty = difficultyToNumber;
+    
+    if (numberDifficulty === 1){
+        gameSettings.gameSize = 6;
+        gameSettings.bombs = 4;
+        main.style.width = '335px';
+        main.style.height = '335px';
+    } else if (numberDifficulty === 2){
+        gameSettings.gameSize = 7;
+        gameSettings.bombs = 5;
+        main.style.width = '390px';
+        main.style.height = '390px';
+    } else {
+        gameSettings.gameSize = 8;
+        gameSettings.bombs = 6;
+        main.style.width = '445px';
+        main.style.height = '445px';
+    }
+    makeSquares();
+    generateBombs();
+}, false);
+
+makeSquares();
+generateBombs();
+
+
+
+
+
+
+
 
 function setIds() {
     for (let i = 0; i < sqauresArray.length; i++) {
@@ -47,35 +104,7 @@ function setIds() {
     }
 }
 
-setIds();
 
-let iterator = [
-    row1,
-    row2,
-    row3,
-    row4,
-    row5,
-    row6,
-    row7,
-    row8,
-];
 
-function generateBombs() {
-    const randomNum = Math.floor(Math.random() * 5);
-    const bomb = iterator[randomNum][randomNum];
-    bomb.classList.add('bomb');
-}
 
-generateBombs();
-generateBombs();
-generateBombs();
 
-let selec  tedDropDown = document.querySelector('select');
-
-let numberDifficulty = 0;
-
-selectedDropDown.addEventListener('change', function() {
-    let difficulty = this.value;
-    let difficultyToNumber = parseInt(difficulty);
-    numberDifficulty = difficultyToNumber;
-}, false);
