@@ -58,7 +58,6 @@ function generateBombs() {
             }
         }
         bombArr.push(bomb);
-        console.log(bomb);
         bomb.classList.add('bomb');
     }
     detectBombs();
@@ -78,7 +77,6 @@ selectedDropDown.addEventListener('change', function() {
         score.style.width = main.style.width;
         makeSquares(squareAmount);
         gameOver = false;
-        firstClick = true;
     } else if (difficultyToNumber === 1){
         removeSquares();
         gameSettings.gameSize = 6;
@@ -90,7 +88,6 @@ selectedDropDown.addEventListener('change', function() {
         score.style.width = main.style.width;
         makeSquares(squareAmount);
         gameOver = false;
-        firstClick = true;
     } else if (difficultyToNumber === 2){
         removeSquares();
         gameSettings.gameSize = 7;
@@ -102,7 +99,6 @@ selectedDropDown.addEventListener('change', function() {
         score.style.width = main.style.width;
         makeSquares(squareAmount);
         gameOver = false;
-        firstClick = true;
     } else {
         removeSquares();
         gameSettings.gameSize = 8;
@@ -114,7 +110,6 @@ selectedDropDown.addEventListener('change', function() {
         score.style.width = main.style.width;
         makeSquares(squareAmount);
         gameOver = false;
-        firstClick = true;
     }
 }, false);
 
@@ -260,7 +255,6 @@ function detectBombs() {
                     iterator[i][j].style.backgroundColor = 'green';
                     iterator[i][j].classList.add('clicked');
                 }
-                console.log(timesToClick);
             });
             iterator[i][j].addEventListener('contextmenu', function(e) {
                 e.preventDefault();
